@@ -1,0 +1,31 @@
+name: Lint / Typos
+
+on:
+  workflow_call:
+
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lint-typos-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-typos:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Install codespell
+        run: pip install codespell==2.3.0
+
+      - name: Check for spelling errors
+        run: |
+          codespell --config .codespellrc

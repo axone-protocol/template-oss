@@ -1,0 +1,4 @@
+[codespell]
+skip = *.json
+count = true
+quiet-level = 3
