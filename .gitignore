@@ -1,1 +1,5 @@
 .vscode/
+
+# Nix
+.direnv/
+result
